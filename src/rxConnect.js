@@ -17,10 +17,13 @@ function isObservable(obj) {
 }
 
 export function getAdapter() {
-    return rxConnect.adapter || require("./rx4Adapter");
+    return rxConnect.adapter || require("./rx5Adapter");
 }
 
 export default function rxConnect(selector, options = DEFAULT_OPTIONS) {
+
+    this.adapter = options.adapter;
+
     return WrappedComponent => class RxConnector extends React.PureComponent {
 
         static displayName = "RxConnector";
